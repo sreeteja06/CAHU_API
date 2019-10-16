@@ -55,8 +55,7 @@ router.post('/users/sendemail', awaitHandler( ( req, res ) => {
     //end of nodemailer
 } ))
 
-router.post( '/users/signup', awaitHandler(async ( req, res ) => {
-    let tempUser = await tempUserModel.findOne({_id: req.body.tempuserID})
+router.post( '/users/register', awaitHandler(async ( req, res ) => {
     if(tempUser.OTP != req.body.OTP){
         res.status( 401 ).end();
     } else{
@@ -66,7 +65,11 @@ router.post( '/users/signup', awaitHandler(async ( req, res ) => {
           role: req.body.role,
           firstName: req.body.firstName,
           lastName: req.body.lastName,
-          ID: req.body.ID
+          ATIT: req.body.ATIT,
+          father: req.body.father,
+          mother: req.body.mother,
+          DOB: req.body.DOB,
+          address: req.body.address
         };
         let user = new User( body );
         user.save().then( () => {

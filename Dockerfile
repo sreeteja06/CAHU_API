@@ -6,4 +6,4 @@ COPY . .
 EXPOSE 4003
 CMD [ "npm", "start" ]
 
-#docker build -t sreetejaact/actchain-cardealerapi .
+#docker build -t sreeteja06/cahu_api .

@@ -4,55 +4,76 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 
-let UserSchema = new mongoose.Schema( {
-   registrationNumber: {
-      type: String,
-      required: true,
-      unique: true
-   },
-   email: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 1,
-      unique: true,
-      validate: {
-         validator: validator.isEmail,
-         message: '{VALUE} is not a valid email'
-      }
-   },
-   password: {
-      type: String,
-      require: true,
-      minlength: 6
-   },
-   firstName: {
-      type: String,
-      required: true,
-   },
-   lastName: {
-      type: String,
-      required: true,
-   },
-   phone: {
-      type: Number,
-      required: true,
-   },
-   role: {
-      type: String,
-      default: false
-   },
-   tokens: [{
+let UserSchema = new mongoose.Schema({
+  registrationNumber: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1,
+    unique: true,
+    validate: {
+      validator: validator.isEmail,
+      message: "{VALUE} is not a valid email"
+    }
+  },
+  password: {
+    type: String,
+    require: true,
+    minlength: 6
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: Number,
+    required: true
+  },
+  role: {
+    type: String,
+    default: false
+  },
+  father: {
+     type: String,
+     required: true
+  },
+  mother: {
+     type: String,
+     required: true
+  },
+  DOB: {
+     type: String,
+     required: true
+  },
+  address: {
+     type: String,
+     required: true
+  },
+  interMarks: Number,
+  MainsRank: Number,
+  EAMCETRank: Number,
+  tokens: [
+    {
       access: {
-         type: String,
-         required: true
+        type: String,
+        required: true
       },
       token: {
-         type: String,
-         required: true
+        type: String,
+        required: true
       }
-   }]
-} );
+    }
+  ]
+});
 
 UserSchema.methods.generateAuthToken = function () {
    let user = this;
