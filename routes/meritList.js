@@ -1,5 +1,4 @@
-let Papa = require('papaparse')
-let file = require('../assets/atit.csv')
+let readXlsxFile = require('read-excel-file/node');
 let express = require( 'express' )
 let router = express.Router()
 
@@ -18,34 +17,20 @@ let router = express.Router()
 //     };
 // };
 
-var merList = []
+
 
 router.get('/prepMerit',(req,res)=>{
-    Papa.parse('../assets/atit.csv',{
-        download: true,
-        complete: results=>{
-            for(let i=1;i<results.data.length;i++){
-                merList.push({
-                    "Name": results.data[i][2],
-                    "Score": results.data[i][4],
-                    "Phy_score": results.data[i][6],
-                    "Chem_score": results.data[i][9],
-                    "Eng_score": results.data[i][12],
-                    "Log_score": results.data[i][15],
-                    "Math_score": results.data[i][18]
-                })
-            }
+    let merList = []
+    readXlsxFile('./assets/ATIT Students Results.xlsx').then(rows=>{
+        for(let i=1;i<2394;i++){
+            merList.push({
+                "Name": rows[i][5],
+                "Score": rows[i][17]
+            })
         }
+        merList.sort((a, b) => (a.Score < b.Score) ? 1 : -1)
+        console.log(merList)
     })
-    merList.sort((a,b)=>{
-        let keyA = a.Score,
-            keyB = a.Score;
-        // Compare the scores of 2 candidates
-        if(keyA < keyB) return -1;
-        if(keyA > keyB) return 1;
-        return 0;
-    });
-    console.log(merList)
 
 })
 
