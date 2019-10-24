@@ -28,9 +28,11 @@ router.get('/prepMerit',(req,res)=>{
                 "Score": rows[i][17]
             })
         }
-        merList.sort((a, b) => (a.Score < b.Score) ? 1 : -1)
+        merList.sort((a, b) =>{
+            return a.Score<b.Score
+        })
         console.log(merList)
-    })
+    }).catch(err=>console.log(err))
 
 })
 
