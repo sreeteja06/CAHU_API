@@ -5,6 +5,7 @@ const cors = require( 'cors' );
 const morgan = require('morgan');
 var http = require( 'http' );
 const userRoute = require( './routes/user' );
+const merRoute = require('./routes/meritList')
 require('./config/config')
 var host = 'localhost';
 
@@ -20,6 +21,7 @@ app.use(
   } )
 );
 app.use( '/', userRoute );
+app.use('/mer',merRoute);
 
 const port = process.env.PORT || 4003;
 
