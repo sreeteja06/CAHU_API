@@ -2,22 +2,7 @@ let readXlsxFile = require('read-excel-file/node');
 let express = require( 'express' )
 let router = express.Router()
 
-// let User = require( '../models/user' );
-// let { authenticate } = require( '../middleware/authentication' );
-// require( '../config/config' );
-
-// const awaitHandler = fn => {
-//     return async ( req, res, next ) => {
-//         try {
-//             res.setHeader( 'Content-Type', 'application/json; charset=utf-8' );
-//             await fn( req, res, next );
-//         } catch ( err ) {
-//             next( err );
-//         }
-//     };
-// };
-
-
+ let list = require( '../models/merList' );
 
 router.get('/prepMerit',(req,res)=>{
     let merList = []
@@ -31,6 +16,9 @@ router.get('/prepMerit',(req,res)=>{
         merList.sort((a, b) =>{
             return a.Score<b.Score
         })
+        let mer = new list(merList)
+        mer.save().then(res=>console.log(res))
+        .catch(err=>console.log(err))
         console.log(merList)
     }).catch(err=>console.log(err))
 
