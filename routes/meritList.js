@@ -1,37 +1,36 @@
 let readXlsxFile = require('read-excel-file/node');
 let express = require( 'express' )
 let router = express.Router()
+let url = require('url')
 
-// let User = require( '../models/user' );
-// let { authenticate } = require( '../middleware/authentication' );
-// require( '../config/config' );
-
-// const awaitHandler = fn => {
-//     return async ( req, res, next ) => {
-//         try {
-//             res.setHeader( 'Content-Type', 'application/json; charset=utf-8' );
-//             await fn( req, res, next );
-//         } catch ( err ) {
-//             next( err );
-//         }
-//     };
-// };
-
-
+let list = require( '../models/merList' );
 
 router.get('/prepMerit',(req,res)=>{
     let merList = []
     readXlsxFile('./assets/ATIT Students Results.xlsx').then(rows=>{
         for(let i=1;i<2394;i++){
             merList.push({
-                "Name": rows[i][5],
-                "Score": rows[i][17]
+                "maths": rows[i][14],
+                "physics": rows[i][17],
+                "logical": rows[i][20],
+                "english": rows[i][23],
+                "totalScore": rows[i][17],
+                "name": rows[i][5],
+                "preference": rows[i][39],
+                "pref2": rows[i][40],
+                "pref3": rows[i][41]
+
             })
         }
-        merList.sort((a, b) => (a.Score < b.Score) ? 1 : -1)
-        console.log(merList)
-    })
+        let mer = new list({
+            meritList: merList
+        })
+        mer.save()
+        .then(li=>{
+            console.log(li)
+        })
+        .catch(err=>console.log(err))
+    }).catch(err=>console.log(err))
 
 })
-
 module.exports = router
