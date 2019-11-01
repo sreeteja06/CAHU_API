@@ -3,9 +3,12 @@ const express = require( 'express' );
 const bodyParser = require( 'body-parser' );
 const cors = require( 'cors' );
 const morgan = require('morgan');
+const mongoose = require('mongoose')
+const db = require('./config/keys').mongoURI
 var http = require( 'http' );
 const userRoute = require( './routes/user' );
 const merRoute = require('./routes/meritList')
+const allocRoute = require('./routes/alloc')
 require('./config/config')
 var host = 'localhost';
 
@@ -20,8 +23,15 @@ app.use(
     extended: false
   } )
 );
+mongoose.connect(db,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(res=>console.log('MongoDB Connected'))
+.catch(err=>console.log(err))
 app.use( '/', userRoute );
 app.use('/mer',merRoute);
+app.use('/alloc',allocRoute)
 
 const port = process.env.PORT || 4003;
 

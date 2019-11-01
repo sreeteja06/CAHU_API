@@ -20,9 +20,13 @@ let ATITSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  _user: {
-    type: mongoose.Schema.Types.ObjectId,
+  name: {
+    type: String,
     required: true
+  },
+  preference:{
+    type: String,
+    required:true
   }
 });
 
