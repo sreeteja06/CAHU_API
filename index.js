@@ -9,6 +9,7 @@ var http = require( 'http' );
 const userRoute = require( './routes/user' );
 const merRoute = require('./routes/meritList')
 const allocRoute = require('./routes/alloc')
+const deptRoute = require("./routes/department");
 require('./config/config')
 var host = 'localhost';
 
@@ -32,6 +33,7 @@ mongoose.connect(db,{
 app.use( '/', userRoute );
 app.use('/mer',merRoute);
 app.use('/alloc',allocRoute)
+app.use('/dept', deptRoute)
 
 const port = process.env.PORT || 4003;
 
