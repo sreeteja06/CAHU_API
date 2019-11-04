@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 
+let { mongoose } = require( '../db/mongoose' );
 let deptModel = require("../models/departments");
 
 const awaitHandler = fn => {

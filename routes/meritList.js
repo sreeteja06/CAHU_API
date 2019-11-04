@@ -2,10 +2,12 @@ let readXlsxFile = require("read-excel-file/node");
 let express = require("express");
 let router = express.Router();
 let url = require("url");
+let { mongoose } = require( '../db/mongoose' );
 
 let list = require("../models/merList");
 let atitModel = require("../models/atit");
 let userModel = require("../models/user");
+let departModel = require("../models/departments");
 
 router.post("/atitScoresAndUser", async (req, res) => {
   try {
@@ -52,6 +54,61 @@ router.post("/atitScoresAndUser", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+router.get("/getAllocations", async (req, res) => {
+    try{
+        console.time("done filtering");
+        let response = await atitModel.find({eligible: true}).sort([['totalScore', -1],['maths', -1],["physics", -1]]);
+        console.timeEnd("done filtering");
+        // let depts = [{
+        //     DeptName: "CSE",
+        //     DeptSeats: 5,
+        //     allocated: 0,
+        // }]
+        let depts = await departModel.find();
+        for(let i = 0; i < depts.length; i++){
+            let temp = { ...depts[i]._doc }
+            depts[i] = {...temp, allocated: 0}
+        }
+        console.time("allocation");
+        for( let i = 0; i < response.length; i++){
+            let department = depts.findIndex(obj => {
+                return obj.DeptName === response[i].preference
+            });
+            if(department === -1 || depts[department].allocated === depts[department].DeptSeats){
+                let department2 = depts.findIndex(obj => {
+                    return obj.DeptName === response[i].preference2
+                });
+                if( department2 === -1 || depts[department2].allocated === depts[department2].DeptSeats){
+                    let department3 = depts.findIndex(obj => {
+                        return obj.DeptName === response[i].preference2
+                    });
+                    if(department3 === -1 || depts[department3].allocated === depts[department3].DeptSeats){
+                        let temp = { ...response[i]._doc }
+                        response[i] = { ...temp, allocated: "None" }
+                    }else{
+                        let temp = { ...response[i]._doc }
+                        response[i] = { ...temp, allocated: depts[department3].DeptName }
+                        ++depts[department3].allocated;
+                    }
+                }else{
+                    let temp = { ...response[i]._doc }
+                    response[i] = { ...temp, allocated: depts[department2].DeptName }
+                    ++depts[department2].allocated;
+                }
+            }else{
+                let temp = { ...response[i]._doc }
+                response[i] = { ...temp, allocated: depts[department].DeptName }
+                ++depts[department].allocated;
+            }
+        }
+        console.timeEnd("allocation");
+        res.send(response);
+    }catch(e){
+        console.log(e);
+        res.sendStatus(500)
+    }
+})
 
 router.get('/prepMerit',(req,res)=>{
     let merList = []

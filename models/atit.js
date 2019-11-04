@@ -35,6 +35,10 @@ let ATITSchema = new mongoose.Schema({
   preference3:{
     type: String,
     required:true
+  },
+  eligible: {
+    type: Boolean,
+    default: true
   }
 });
 

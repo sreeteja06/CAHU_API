@@ -1,7 +1,7 @@
 {
     "test": {
         "PORT": 4003,
-        "MONGODB_URI": "mongodb+srv://cahu_dev:cahu123@cluster0-pfpll.mongodb.net/test?retryWrites=true&w=majority",
+        "MONGODB_URI": "mongodb://localhost/cahu",
         "JWT_SECRET": "poijasdf98435jpgfdpoij3"
     },
     "development": {
