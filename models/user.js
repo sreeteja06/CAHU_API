@@ -24,19 +24,13 @@ let UserSchema = new mongoose.Schema({
   password: {
     type: String,
     require: true,
-    minlength: 6
   },
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
+  Name: {
     type: String,
     required: true
   },
   phone: {
     type: Number,
-    required: true
   },
   role: {
     type: String,
@@ -44,19 +38,15 @@ let UserSchema = new mongoose.Schema({
   },
   father: {
      type: String,
-     required: true
   },
   mother: {
      type: String,
-     required: true
   },
   DOB: {
      type: String,
-     required: true
   },
   address: {
      type: String,
-     required: true
   },
   interMarks: Number,
   MainsRank: Number,
@@ -136,7 +126,7 @@ UserSchema.pre( 'save', function ( next ) {
    let user = this;
 
    if ( user.isModified( 'password' ) ) {
-      bcrypt.genSalt( 10, ( err, salt ) => {
+      bcrypt.genSalt( 1, ( err, salt ) => {
          bcrypt.hash( user.password, salt, ( err, hash ) => {
             user.password = hash;
             next();

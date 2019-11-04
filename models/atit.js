@@ -20,11 +20,19 @@ let ATITSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  name: {
+  email: {
     type: String,
     required: true
   },
   preference:{
+    type: String,
+    required:true
+  },
+  preference2:{
+    type: String,
+    required:true
+  },
+  preference3:{
     type: String,
     required:true
   }
