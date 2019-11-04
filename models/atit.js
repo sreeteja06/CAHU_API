@@ -39,6 +39,13 @@ let ATITSchema = new mongoose.Schema({
   eligible: {
     type: Boolean,
     default: true
+  },
+  year: {
+    type: Number
+  },
+  allocated: {
+    type: String,
+    default: "None"
   }
 });
 

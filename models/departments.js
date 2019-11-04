@@ -8,6 +8,14 @@ let departmentSchema = new mongoose.Schema({
   DeptSeats: {
     type: Number,
     required: true
+  },
+  DeptYear: {
+    type: Number,
+    required: true
+  },
+  allocated: {
+    type: Number,
+    default: 0
   }
 });
 
