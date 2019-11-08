@@ -16,9 +16,9 @@ router.get('/prepMerit',(req,res)=>{
                 "english": rows[i][23],
                 "totalScore": rows[i][17],
                 "name": rows[i][5],
-                "preference": rows[i][39],
-                "pref2": rows[i][40],
-                "pref3": rows[i][41]
+                "preference": rows[i][38],
+                "pref2": rows[i][39],
+                "pref3": rows[i][40]
 
             })
         }
