@@ -1,0 +1,88 @@
+
+<html>
+   <head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+      <title>Admin Login Page</title>
+      <style>
+      #login{
+          border:2px solid;
+          width:35ch;
+          border-radius:10px;
+          padding:10px;
+          padding-top:3px;
+          height:280px;
+          position:relative;
+          
+          top:5%;
+          background-color:white;
+          opacity: 0.9;
+      }
+      #hrl{
+          border:3px solid;
+          margin-top:3%;
+      }
+      #in{ 
+          width:30ch;
+      }
+      #head h1{
+        font-family: 'Righteous', cursive;
+        position:relative;
+      }
+      #head{
+          padding:10px;
+          padding-top:20px;
+      }
+      #head hr{
+        border:3px solid;
+        margin-top:1%;
+      }
+      input{
+        margin-left:5px;
+        margin-bottom:10px;
+
+      }
+      #login button{
+            margin-top:10px;
+      }
+      label{
+        margin-left:5px;
+      }
+      #back{
+      position:absolute;
+      opacity: 0.7;
+      z-index:-1;
+      height:100%;
+      width:100%;
+      }
+      #login:hover{
+        opacity:1;
+      }
+      </style>
+    </head>
+    <body>
+        
+    <img id='back' src='images/icfai-tech.jpg'/>
+    <div class='container-fluid'>
+    <div id='head' class='container-fluid'>
+    <center><h1>Icfai Tech</h1></center>
+    <hr/>
+    </div>
+    <div id="login" class='container-fluid'>
+    <center><p style="font-weight:800;">Admin Login</p></center>
+    <hr id='hrl'/>
+        <form action="" method="POST">
+            <label>UserName : </label><input type="text" id='in' name="username" required>
+            <label>Password : </label><input type="password"id='in' name="password" required>
+            <center><button type="submit" class='btn btn-outline-primary'>Submit</button></center>
+        </form>
+    </div>
+    </div>
+    </body>
+</html>

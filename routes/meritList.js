@@ -1,8 +1,7 @@
 let readXlsxFile = require("read-excel-file/node");
 let express = require("express");
 let router = express.Router();
-let url = require("url");
-let { mongoose } = require("../db/mongoose");
+const fs = require('fs')
 
 let list = require("../models/merList");
 let atitModel = require("../models/atit");
@@ -16,7 +15,10 @@ router.post("/atitScoresAndUser", async (req, res) => {
     let atitScores = [];
     let userData = [];
     console.log("starting reading file");
-    let fileData = await readXlsxFile("./assets/ATIT Students Results.xlsx");
+    let file = ''
+    file = fs.readdirSync('./assets/')[0]
+    console.log(`./assets/${file}`)
+    let fileData = await readXlsxFile(`./assets/${file}`);
     console.log("Done reading file");
     let userTemp = {};
     let atitTemp = {};
@@ -31,6 +33,7 @@ router.post("/atitScoresAndUser", async (req, res) => {
         phone: fileData[i][13]
       };
       atitTemp = {
+        name: fileData[i][5],
         maths: fileData[i][14],
         physics: fileData[i][17],
         english: fileData[i][23],
@@ -116,7 +119,8 @@ router.get("/getAllocations", async (req, res) => {
   try {
     console.time("done filtering");
     let response = await atitModel
-      .find({ eligible: true });
+      .find()
+      .sort([["totalScore", -1], ["maths", -1], ["physics", -1]]);;
     res.send(response);
   } catch (e) {
     console.log(e);
