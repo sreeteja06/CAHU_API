@@ -10,6 +10,7 @@ const userRoute = require( './routes/user' );
 const merRoute = require('./routes/meritList')
 const allocRoute = require('./routes/alloc')
 const deptRoute = require("./routes/department");
+const uploadRoute = require('./routes/upload')
 require('./config/config')
 var host = 'localhost';
 
@@ -34,6 +35,7 @@ app.use( '/', userRoute );
 app.use('/mer',merRoute);
 app.use('/alloc',allocRoute)
 app.use('/dept', deptRoute)
+app.use('/upload',uploadRoute)
 
 const port = process.env.PORT || 4003;
 

@@ -4,6 +4,7 @@ import './App.css';
 import MeritList from './components/merlistDisplay'
 import Header from './components/layouts/Header'
 import AllocList from './components/allocListDisplay'
+import Upload from './components/uploadFile'
 
 class App extends Component{
   render(){
@@ -11,8 +12,9 @@ class App extends Component{
       <div className='App'>
       <Router>
       <Header />
-      <Route exact path="/" component={MeritList} />
+      <Route exact path="/" component={Upload} />
       <Route exact path="/alloc" component={AllocList} />
+      <Route exact path="/merit" component={MeritList} />
       </Router>
       </div>
     )

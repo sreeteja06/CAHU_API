@@ -1,8 +1,7 @@
 let readXlsxFile = require("read-excel-file/node");
 let express = require("express");
 let router = express.Router();
-let url = require("url");
-let { mongoose } = require("../db/mongoose");
+const fs = require('fs')
 
 let list = require("../models/merList");
 let atitModel = require("../models/atit");
@@ -16,7 +15,10 @@ router.post("/atitScoresAndUser", async (req, res) => {
     let atitScores = [];
     let userData = [];
     console.log("starting reading file");
-    let fileData = await readXlsxFile("./assets/ATIT Students Results.xlsx");
+    let file = ''
+    file = fs.readdirSync('./assets/')[0]
+    console.log(`./assets/${file}`)
+    let fileData = await readXlsxFile(`./assets/${file}`);
     console.log("Done reading file");
     let userTemp = {};
     let atitTemp = {};
