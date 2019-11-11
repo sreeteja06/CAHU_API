@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 let ATITSchema = new mongoose.Schema({
+  name:{
+    type: String,
+    required: true
+  },
   maths: {
     type: Number,
     required: true
@@ -20,13 +24,32 @@ let ATITSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  name: {
+  email: {
     type: String,
     required: true
   },
   preference:{
     type: String,
     required:true
+  },
+  preference2:{
+    type: String,
+    required:true
+  },
+  preference3:{
+    type: String,
+    required:true
+  },
+  eligible: {
+    type: Boolean,
+    default: true
+  },
+  year: {
+    type: Number
+  },
+  allocated: {
+    type: String,
+    default: "None"
   }
 });
 

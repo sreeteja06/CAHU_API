@@ -1,0 +1,87 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+      <title>Add Year</title>
+      <style>
+       #head h1{
+        font-family: 'Righteous', cursive;
+        position:relative;
+        
+      }
+      #check{
+          margin-top:1%;
+      }
+      #head{
+          padding:10px;
+          padding-top:20px;
+      }
+      #card{
+          width:450px;
+          margin-top:5%;
+      }
+      .ns input{
+          width:100px;
+          
+      }
+    
+      </style>
+   </head>
+   <body>
+   <div class='container-fluid'>
+    <div id='head' class='container-fluid'>
+        <center><h1>Icfai Tech</h1></center>
+    </div>
+    <div class="container-fluid"> 
+    <div class="row">
+    <div class="col-xl-11 bg-dark text-white" ><h5 style='margin-top:8px;'>UserName : <span class="badge badge-primary"><span></a></h5></div>
+    <div class="col-xl-1 text-center text-white "><button type='button' class='btn btn-primary' style='margin-top:1px;'><a class="text-decoration-none text-light" href="">SignOut</a></button></div>
+    </div>
+    </div>
+    <br><br>
+    <div class="container " id='check'>
+    <div class="card">
+    <div class="card-header text-center">
+    <form class="form-inline" action='' method='POST'> 
+    <div class="col-sm-3"></div>
+    <div class="col-sm-1"><label for="year">Year:</label></div>
+    <div class="col-sm-3 "><input type="number" class="form-control" id="year" name='year' required></div>
+    <div class="col-sm-1"><button type="submit" class="btn btn-primary">check</button></div>
+    <div class="col-sm-4"></div>
+    </form>
+    </div>
+    </div>
+    <div class="container">
+    <div class="card-body text-center">
+    <form action='' method='POST' >
+    <strong>Number Of seats</strong><hr/>
+    <div class="row ns">
+    <div class="col-md-2 text-center">CSE: <input type='number' name='cse' required></div>
+    <div class="col-md-2 text-center">DS: <input type='number' name='ds' required></div>
+    <div class="col-md-2 text-center">AI: <input type='number' name='ai' required></div>
+    <div class="col-md-2 text-center">ECE: <input type='number' name='ece' required></div>
+    <div class="col-md-2 text-center">MEC: <input type='number' name='mec' required></div>
+    <div class="col-md-2 text-center">CIV: <input type='number' name='civ' required></div>
+    </div>
+    </div> 
+   
+   <div class="card-footer">
+   <div class="row">
+     <div class='col-sm-6 text-center'><button type="submit" class='btn btn-outline-primary'>Submit</button>
+    </form>
+    </div>
+    <div class='col-sm-6 text-center'><button type="submit" class='btn btn-outline-primary'><a class="text-decoration-none" href=''>Back</a></button></div>
+     </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+   </body>
+</html>
