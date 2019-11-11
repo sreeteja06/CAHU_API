@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 let ATITSchema = new mongoose.Schema({
+  name:{
+    type: String,
+    required: true
+  },
   maths: {
     type: Number,
     required: true

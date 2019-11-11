@@ -19,7 +19,7 @@ const awaitHandler = fn => {
 router.get(
   "/deptNamesAndSeats",
   awaitHandler(async (req, res) => {
-    let response = await deptModel.find({DeptYear: req.query.deptYear}).select({"DeptName": 1, "DeptSeats":1});
+    let response = await deptModel.find({DeptYear: req.query.deptYear}).select({"DeptName": 1, "DeptSeats":1, "allocated":1});
     console.log(response);
     res.send(response);
   })

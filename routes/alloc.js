@@ -1,15 +1,15 @@
 let express = require( 'express' )
 let router = express.Router()
 
-let list = require('../models/merList')
+let list = require('../models/atit')
 
 router.get('/makeAlloc',(req,res)=>{
     let allocStats = {
-        CSE: 50,
-        ECE: 40,
-        EEE: 40,
-        CIVIL: 40,
-        ME: 30
+        CSE: 5,
+        ECE: 4,
+        EEE: 4,
+        Civil: 4,
+        ME: 3
     }
     let allocated = []
     let q1 = []
@@ -47,8 +47,8 @@ router.get('/makeAlloc',(req,res)=>{
         console.log("ECE:" + allocStats.ECE)
         console.log("EEE:" + allocStats.EEE)
         console.log("Mech:" + allocStats.ME)
-        console.log("CIVIL:" + allocStats.CIVIL)
-        console.log("Total in waiting list" + (q2.length))
+        console.log("Civil:" + allocStats.Civil)
+        console.log(allocated)
     })
     .catch(err=>console.log(err))
 })
